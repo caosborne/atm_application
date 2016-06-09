@@ -1,12 +1,45 @@
 //Begin with the document ready function
+$(document).ready(function() {
+
 
     //Checking account deposit function
-
       //On click of the depositChecking button
-
-        //Get value from the amountChecking input field
-
+    $('#depositChecking').click(function(event) {
+      // console.log(event);
+            //Get value from the amountChecking input field
+        var depositAmount = $('#amountChecking').val();
+        // console.log(depositAmount)
         //Take that value and add it to the existing value in the checkingBalance div
+        var checkingBal = $('#checkingBalance').text();
+        // console.log(checkingBal);
+
+        // console.log(strValue);
+        var totalBalance =  parseInt(depositAmount) + parseInt(checkingBal.replace('$',''));
+        $('#checkingBalance').text('$' + totalBalance);
+        // console.log(totalBalance);
+
+        });
+          $('#withdrawChecking').click(function(event) {
+      // console.log(event);
+            //Get value from the amountChecking input field
+        var withdrawAmount = $('#amountChecking').val();
+        // console.log(depositAmount)
+        //Take that value and add it to the existing value in the checkingBalance div
+        var checkingBal = $('#checkingBalance').text();
+        // console.log(checkingBal);
+
+        // console.log(strValue);
+        var totalBalance = parseInt(checkingBal.replace('$','')) - parseInt(withdrawAmount);
+        // $('#checkingBalance').text('$' + totalBalance);
+
+        if (totalBalance <= withdrawAmount) {
+          $('#checkingBalance').text('$' + totalBalance);
+        }
+
+
+
+console.log(totalBalance);
+      });
 
     //Checking account withdrawl funtion
 
@@ -41,3 +74,4 @@
 // Bonus-- get the two accounts to work with each other and allow for overdraft protection
 
 // Double Bonus-- This isnt very DRY.  Using the keyword "this" see if you can make the withdraw and deposit functions work for both accounts
+});
